@@ -39,7 +39,7 @@ jobs:
         run: echo "TIMESTAMP=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
   
       - name: Build Docker image
-        run: docker build -t your-dockerhub-username/kubernetes-cicd-webapp:${{ env.TIMESTAMP }} .
+        run: docker build -t djoksa4/kubernetes-cicd-webapp:${{ env.TIMESTAMP }} .
   
       - name: Push Docker image
-        run: docker push your-dockerhub-username/kubernetes-cicd-webapp:${{ env.TIMESTAMP }}
+        run: docker push djoksa4/kubernetes-cicd-webapp:${{ env.TIMESTAMP }}
