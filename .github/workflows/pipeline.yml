@@ -26,7 +26,7 @@ jobs:
         run: mvn clean package
 
       - name: Build Docker image
-        run: docker build -t your-dockerhub-username/kubernetes-cicd-webapp:latest .
+        run: docker build -t djoksa4/kubernetes-cicd-webapp:latest .
 
       - name: Log in to DockerHub
         uses: docker/login-action@v2
@@ -35,4 +35,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker image
-        run: docker push your-dockerhub-username/kubernetes-cicd-webapp:latest
+        run: docker push djoksa4/kubernetes-cicd-webapp:latest
