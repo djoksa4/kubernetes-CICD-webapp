@@ -37,16 +37,16 @@ jobs:
 
       - name: Pull existing image (if it exists)
         run: |
-            docker pull your-dockerhub-username/kubernetes-cicd-webapp:latest || true
+            docker pull djoksa4/kubernetes-cicd-webapp:latest || true
   
       - name: Tag and push old image
         run: |
             TIMESTAMP=$(date +%Y%m%d%H%M%S)
-            docker tag your-dockerhub-username/kubernetes-cicd-webapp:latest your-dockerhub-username/kubernetes-cicd-webapp:$TIMESTAMP
-            docker push your-dockerhub-username/kubernetes-cicd-webapp:$TIMESTAMP
+            docker tag djoksa4/kubernetes-cicd-webapp:latest djoksa4/kubernetes-cicd-webapp:$TIMESTAMP
+            docker push djoksa4/kubernetes-cicd-webapp:$TIMESTAMP
   
       - name: Build Docker image
-        run: docker build -t your-dockerhub-username/kubernetes-cicd-webapp:latest .
+        run: docker build -t djoksa4/kubernetes-cicd-webapp:latest .
   
       - name: Push new Docker image
-        run: docker push your-dockerhub-username/kubernetes-cicd-webapp:latest
+        run: docker push djoksa4/kubernetes-cicd-webapp:latest
