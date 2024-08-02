@@ -1,5 +1,5 @@
 <html>
     <body>
-        <h2>K8s CICD v1.6</h2>
+        <h2>K8s CICD GAWWWWWD v2</h2>
     </body>
 </html>

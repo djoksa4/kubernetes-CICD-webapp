@@ -43,3 +43,26 @@ jobs:
   
       - name: Push Docker image
         run: docker push djoksa4/kubernetes-cicd-webapp:${{ env.TIMESTAMP }}
+
+      - name: Checkout Helm manifest repo
+        uses: actions/checkout@v2
+        with:
+          repository: djoksa4/kubernetes-CICD-webapp-MANIFEST
+          token: ${{ secrets.HELM_REPO_TOKEN }}
+          path: helm-manifests
+
+      - name: Update values.yaml with new image tag
+        run: |
+          cd helm-manifests
+          sed -i "s/tag: \".*\"/tag: \"${{ env.TIMESTAMP }}\"/" my-app/values.yaml
+
+      - name: Commit and push changes to Helm manifest repo
+        run: |
+          cd helm-manifests
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add my-app/values.yaml
+          git commit -m "Update image tag to ${TIMESTAMP}"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.HELM_REPO_TOKEN }}
