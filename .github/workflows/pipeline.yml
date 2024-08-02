@@ -36,7 +36,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Generate Timestamp
-        run: echo "TIMESTAMP=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
+        run: echo "TIMESTAMP=$(date -d '+2 hours' +%Y%m%d%H%M)" >> $GITHUB_ENV
   
       - name: Build Docker image
         run: docker build -t djoksa4/kubernetes-cicd-webapp:${{ env.TIMESTAMP }} .
