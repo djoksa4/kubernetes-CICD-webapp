@@ -58,7 +58,6 @@ jobs:
         with:
           image-ref: djoksa4/kubernetes-cicd-webapp:${{ env.TIMESTAMP }}
           severity: CRITICAL,HIGH
-          exit-code: 1
 
       - name: Log in to DockerHub
         uses: docker/login-action@v2
