@@ -26,8 +26,10 @@ jobs:
       - name: Set up SonarCloud
         uses: sonarsource/sonarcloud-github-action@v1
         with:
-          organization: ${{ secrets.SONAR_ORGANIZATION }}
-          token: ${{ secrets.SONAR_TOKEN }}
+          args: >
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
       
       - name: Run SonarCloud Scan
         run: mvn clean verify sonar:sonar \
