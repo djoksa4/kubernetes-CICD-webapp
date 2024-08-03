@@ -54,7 +54,7 @@ jobs:
         run: docker build -t djoksa4/kubernetes-cicd-webapp:${{ env.TIMESTAMP }} .  
 
       - name: Scan Docker image
-        uses: aquasecurity/trivy-action@v1
+        uses: aquasecurity/trivy-action@0.20.0
         with:
           image-ref: djoksa4/kubernetes-cicd-webapp:${{ env.TIMESTAMP }}
           severity: CRITICAL,HIGH
