@@ -54,8 +54,11 @@ jobs:
         run: docker build -t djoksa4/kubernetes-cicd-webapp:${{ env.TIMESTAMP }} .  
 
       - name: Scan Docker image
-        run: |
-          trivy image --severity CRITICAL,HIGH --no-progress --exit-code 1 djoksa4/kubernetes-cicd-webapp:${{ env.TIMESTAMP }}
+        uses: aquasecurity/trivy-action@v1
+        with:
+          image-ref: djoksa4/kubernetes-cicd-webapp:${{ env.TIMESTAMP }}
+          severity: CRITICAL,HIGH
+          exit-code: 1
 
       - name: Log in to DockerHub
         uses: docker/login-action@v2
