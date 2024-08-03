@@ -14,7 +14,7 @@ jobs:
   checkout-and-scan-code:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
       - name: Set up JDK 11
@@ -22,24 +22,15 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-
-      - name: Troubleshoot
-        run: echo ${{ secrets.SONAR_TOKEN }}
       
-      - name: Set up SonarCloud
-        uses: sonarsource/sonarcloud-github-action@v1
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-            -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-      
-      - name: Run SonarCloud Scan
-        run: mvn clean verify sonar:sonar \
-          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
-          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
         
   build-scan-push:
@@ -53,7 +44,7 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v2
         
       - name: Build WAR with Maven
