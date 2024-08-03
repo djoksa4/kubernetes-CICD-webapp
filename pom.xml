@@ -22,7 +22,13 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-war-plugin</artifactId>
             <version>3.3.2</version> <!-- Use a compatible version -->
-        </plugin>
+      </plugin>
+      <!-- Add SonarQube Maven Plugin -->
+      <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>3.9.0.2155</version> <!-- Use the latest version -->
+      </plugin>
     </plugins>
   </build>
 </project>
