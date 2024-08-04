@@ -48,7 +48,9 @@ jobs:
         run: mvn clean package
         
       - name: Generate Timestamp
-        run: echo "TIMESTAMP=$(date -d '+2 hours' +%Y%m%d%H%M)" >> $GITHUB_ENV  
+        run: |
+          echo "TIMESTAMP=$(date -d '+2 hours' +%Y%m%d%H%M)" >> $GITHUB_ENV
+          echo "$(date -d '+2 hours' +%Y%m%d%H%M)" > timestamp.txt 
 
       - name: Build Docker image with timestamp
         run: docker build -t djoksa4/kubernetes-cicd-webapp:${{ env.TIMESTAMP }} .  
